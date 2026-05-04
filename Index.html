@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Import-Export Cameroun | Dédouanement & Conteneurs</title>
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+            background-color: white;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        /* Couleurs de la marque */
+        :root {
+            --bleu-principal: #1E3A8A;   /* Bleu foncé confiance */
+            --bleu-clair: #3B82F6;       /* Hover / accents */
+            --blanc: #FFFFFF;
+            --rouge: #DC2626;            /* Alertes, urgences */
+            --gris-clair: #F9FAFB;
+            --gris-texte: #374151;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Boutons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-bleu {
+            background-color: var(--bleu-principal);
+            color: white;
+            border: 2px solid var(--bleu-principal);
+        }
+
+        .btn-bleu:hover {
+            background-color: var(--bleu-clair);
+            border-color: var(--bleu-clair);
+        }
+
+        .btn-secondaire {
+            background-color: transparent;
+            color: var(--bleu-principal);
+            border: 2px solid var(--bleu-principal);
+        }
+
+        .btn-secondaire:hover {
+            background-color: var(--bleu-principal);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            color: var(--bleu-principal);
+            font-size: 1.6rem;
+        }
+        .logo span {
+            color: var(--rouge);
+            font-weight: normal;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--bleu-principal);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--rouge);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--bleu-principal) 0%, #0f2b66 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn-secondaire {
+            background-color: transparent;
+            border-color: white;
+            color: white;
+        }
+        .hero-buttons .btn-secondaire:hover {
+            background-color: white;
+            color: var(--bleu-principal);
+        }
+
+        /* Services */
+        .services {
+            padding: 60px 0;
+            background-color: var(--gris-clair);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--bleu-principal);
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 30px 20px;
+            flex: 1 1 280px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            color: var(--bleu-principal);
+            margin-bottom: 15px;
+        }
+        .card p {
+            color: var(--gris-texte);
+            margin-bottom: 20px;
+        }
+        .btn-card {
+            background-color: var(--bleu-principal);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .btn-card:hover {
+            background-color: var(--bleu-clair);
+        }
+
+        /* Simulateur */
+        .simulateur {
+            padding: 60px 0;
+            background-color: #EFF6FF; /* bleu très clair */
+        }
+
+        .simulateur .section-title {
+            margin-bottom: 20px;
+        }
+
+        .simulateur-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--bleu-principal);
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .btn-calcul {
+            background-color: var(--bleu-principal);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-calcul:hover {
+            background-color: var(--bleu-clair);
+        }
+        .resultat {
+            margin-top: 25px;
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--bleu-principal);
+            border-left: 5px solid var(--bleu-principal);
+        }
+        .rouge-alert {
+            border-left-color: var(--rouge);
+            color: var(--rouge);
+        }
+
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            z-index: 999;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bleu-principal);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer-contact {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header-flex {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo">
+            <h1>MARYLAND <span>Transit</span></h1>
+            <p style="font-size: 0.8rem; color: var(--bleu-principal);">Import · Export · Dédouanement</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Dédouanement</a></li>
+                <li><a href="#">Conteneurs</a></li>
+                <li><a href="#">Simulateur</a></li>
+                <li><a href="#">Suivi</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Votre partenaire import-export <br> au Cameroun</h2>
+            <p>Dédouanement rapide, vente de conteneurs 20/40 pieds, transit et conseil douanier. Agrément douane camerounaise.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-bleu">Demander un devis</a>
+                <a href="#simulateur" class="btn btn-secondaire">Simuler mes frais de douane</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Nos services</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>📦 Import-Export</h3>
+                    <p>Rapprochement Chine, Turquie, Europe vers Douala. Gestion complète de votre chaîne logistique.</p>
+                    <a href="#" class="btn-card">En savoir plus</a>
+                </div>
+                <div class="card">
+                    <h3>🛃 Dédouanement</h3>
+                    <p>Déclaration en douane, dédouanement express, suivi des dossiers. Satisfaction garantie.</p>
+                    <a href="#" class="btn-card">En savoir plus</a>
+                </div>
+                <div class="card">
+                    <h3>🚛 Vente de conteneurs</h3>
+                    <p>Conteneurs 20' et 40' neufs ou occasion. Livraison Douala – Yaoundé – Garoua.</p>
+                    <a href="#" class="btn-card">Voir les stocks</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulateur de frais de douane -->
+    <section id="simulateur" class="simulateur">
+        <div class="container">
+            <h2 class="section-title">Simulateur de frais de douane</h2>
+            <div class="simulateur-box">
+                <div class="form-group">
+                    <label>Valeur de la marchandise (FOB, FCFA)</label>
+                    <input type="number" id="valeurFob" placeholder="Ex: 5 000 000" value="5000000">
+                </div>
+                <div class="form-group">
+                    <label>Catégorie de produit</label>
+                    <select id="categorie">
+                        <option value="0.25">Véhicules (25%)</option>
+                        <option value="0.15">Conteneurs neufs (15%)</option>
+                        <option value="0.20">Marchandises diverses (20%)</option>
+                        <option value="0.05">Matières premières (5%)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Poids brut (kg)</label>
+                    <input type="number" id="poids" placeholder="Ex: 2500" value="2500">
+                </div>
+                <button class="btn-calcul" id="calculerBtn">Calculer mes frais estimés</button>
+                <div class="resultat" id="resultatSimu">
+                    Cliquez sur "Calculer"
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 15px; text-align: center;">* Estimation - hors frais de transit. Obtenez un devis précis via WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Badge de confiance / Partenaires -->
+    <section style="padding: 40px 0; text-align: center; background: white;">
+        <div class="container">
+            <p style="color: var(--bleu-principal); font-weight: bold;">Partenaires et agréments :</p>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 15px;">
+                <span style="background: #EFF6FF; padding: 5px 15px; border-radius: 30px;">✔ GUCE Cameroun</span>
+                <span style="background: #EFF6FF; padding: 5px 15px; border-radius: 30px;">✔ Port autonome de Douala</span>
+                <span style="background: #EFF6FF; padding: 5px 15px; border-radius: 30px;">✔ Agrément N° 2024/003</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>Im-Ex Cameroun – Douala, Boulevard de la Liberté | Tél: +237 6XX XXX XXX</p>
+        <p>Email: contact@imexcameroun.com | Suivez vos dossiers en ligne</p>
+        <div class="footer-contact">
+            <a href="#">Mentions légales</a> | <a href="#">Plan du site</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem;">© 2025 – Votre confiance, notre engagement</p>
+    </div>
+</footer>
+
+<!-- Bouton WhatsApp flottant -->
+<a href="https://wa.me/2376XXXXXXXX?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20mes%20importations" class="whatsapp-float" target="_blank">
+    <!-- icône WhatsApp simple en UTF-8 -->
+    <span style="font-size: 35px;">💬</span>
+</a>
+
+<script>
+    // Simulateur de frais de douane (exemple simplifié mais cohérent)
+    document.getElementById('calculerBtn').addEventListener('click', function() {
+        let valeur = parseFloat(document.getElementById('valeurFob').value);
+        let categorieTaux = parseFloat(document.getElementById('categorie').value);
+        let poids = parseFloat(document.getElementById('poids').value);
+
+        if (isNaN(valeur) || valeur <= 0) {
+            document.getElementById('resultatSimu').innerHTML = "❌ Veuillez entrer une valeur valide.";
+            document.getElementById('resultatSimu').classList.add('rouge-alert');
+            return;
+        }
+
+        // Calcul simplifié : Droit d'importation = valeur * taux catégorie
+        let droitImport = valeur * categorieTaux;
+        // PCS (Prélèvement Communautaire de Solidarité) 0.5% pour CEMAC
+        let pcs = valeur * 0.005;
+        // Débours (estimation fixe) + frais de manutention
+        let debours = 75000;
+        let tva = (valeur + droitImport + pcs) * 0.195; // TVA 19.5% au Cameroun
+
+        let total = droitImport + pcs + debours + tva;
+
+        document.getElementById('resultatSimu').innerHTML = `
+            📊 Estimation :<br>
+            Droit d'importation : ${droitImport.toLocaleString()} FCFA<br>
+            PCS (0.5%) : ${pcs.toLocaleString()} FCFA<br>
+            Débours & manutention : ${debours.toLocaleString()} FCFA<br>
+            TVA 19.5% : ${tva.toLocaleString()} FCFA<br>
+            <strong style="color: var(--bleu-principal);">Total estimé : ${Math.round(total).toLocaleString()} FCFA</strong>
+        `;
+        document.getElementById('resultatSimu').classList.remove('rouge-alert');
+    });
+</script>
+</body>
+</html>
